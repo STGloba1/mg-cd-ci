@@ -37,6 +37,9 @@ DB_DATABASE=nombre_real
 DB_USERNAME=usuario_real
 DB_PASSWORD=password_real
 
+MINUTES_GENERATOR_AUTH_USERNAME=usuario_real
+MINUTES_GENERATOR_AUTH_PASSWORD=password_real_largo
+
 AI_PROVIDER=nvidia
 AI_API_KEY=clave_real
 AI_MODEL=meta/llama-3.1-70b-instruct

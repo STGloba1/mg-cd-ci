@@ -35,6 +35,12 @@ return [
         ],
     ],
 
+
+    'minutes_generator' => [
+        'auth_username' => env('MINUTES_GENERATOR_AUTH_USERNAME'),
+        'auth_password' => env('MINUTES_GENERATOR_AUTH_PASSWORD'),
+    ],
+
     'ai' => [
         'provider' => env('AI_PROVIDER', 'nvidia'),
         'api_key' => env('AI_API_KEY'),

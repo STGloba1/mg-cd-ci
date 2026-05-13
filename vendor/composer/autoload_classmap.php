@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\MinutesGeneratorController' => $baseDir . '/app/Http/Controllers/MinutesGeneratorController.php',
+    'App\\Http\\Middleware\\EnsureMinutesGeneratorBasicAuth' => $baseDir . '/app/Http/Middleware/EnsureMinutesGeneratorBasicAuth.php',
     'App\\Http\\Requests\\AnalyzeTranscriptRequest' => $baseDir . '/app/Http/Requests/AnalyzeTranscriptRequest.php',
     'App\\Http\\Requests\\UpdateMinuteRequest' => $baseDir . '/app/Http/Requests/UpdateMinuteRequest.php',
     'App\\Models\\Minute' => $baseDir . '/app/Models/Minute.php',
