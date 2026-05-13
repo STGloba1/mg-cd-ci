@@ -114,6 +114,7 @@ HOSTING_REPO_TOKEN=<token con permisos de push sobre STGloba1/mg-cd-ci>
 Y excluye:
 
 - `.env` y `.env.*`
+- `composer.json` y `composer.lock`, para evitar que Hostinger intente resolver dependencias sobre el artefacto
 - `.github/`
 - `node_modules/`
 - `tests/`
