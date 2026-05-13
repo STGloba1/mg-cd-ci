@@ -476,8 +476,9 @@ class ComposerStaticInit74199c0a3889e8d1256a25f93805ef56
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\MinutesGeneratorAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/MinutesGeneratorAuthController.php',
         'App\\Http\\Controllers\\MinutesGeneratorController' => __DIR__ . '/../..' . '/app/Http/Controllers/MinutesGeneratorController.php',
-        'App\\Http\\Middleware\\EnsureMinutesGeneratorBasicAuth' => __DIR__ . '/../..' . '/app/Http/Middleware/EnsureMinutesGeneratorBasicAuth.php',
+        'App\\Http\\Middleware\\EnsureMinutesGeneratorAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/EnsureMinutesGeneratorAuthenticated.php',
         'App\\Http\\Requests\\AnalyzeTranscriptRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AnalyzeTranscriptRequest.php',
         'App\\Http\\Requests\\UpdateMinuteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMinuteRequest.php',
         'App\\Models\\Minute' => __DIR__ . '/../..' . '/app/Models/Minute.php',

@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
-use App\Http\Middleware\EnsureMinutesGeneratorBasicAuth;
+use App\Http\Middleware\EnsureMinutesGeneratorAuthenticated;
 use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'minutes-generator.auth' => EnsureMinutesGeneratorBasicAuth::class,
+            'minutes-generator.auth' => EnsureMinutesGeneratorAuthenticated::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
