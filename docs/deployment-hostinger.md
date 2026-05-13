@@ -63,7 +63,7 @@ php artisan view:cache
 ```
 
 7. Apuntar el document root del dominio a `public/`.
-8. Verificar `/minutes-generator`.
+8. Verificar `/`.
 
 ## Fuentes
 
