@@ -62,7 +62,7 @@ php artisan route:cache
 php artisan view:cache
 ```
 
-7. Apuntar el document root del dominio a `public/`.
+7. Si Hostinger permite cambiar document root, apuntarlo a `public/`. Si no, el `.htaccess` raíz reescribe las solicitudes hacia `public/`.
 8. Verificar `/`.
 
 ## Fuentes
