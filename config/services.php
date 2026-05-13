@@ -39,6 +39,8 @@ return [
     'minutes_generator' => [
         'auth_username' => env('MINUTES_GENERATOR_AUTH_USERNAME'),
         'auth_password' => env('MINUTES_GENERATOR_AUTH_PASSWORD'),
+        'organization_name' => env('MINUTES_GENERATOR_ORGANIZATION_NAME', 'ST Global'),
+        'brand_color' => env('MINUTES_GENERATOR_BRAND_COLOR', '#2563eb'),
     ],
 
     'ai' => [

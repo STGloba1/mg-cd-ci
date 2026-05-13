@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateMinuteRequest;
 use App\Models\Minute;
 use App\Services\TranscriptAnalysisService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Throwable;
 
@@ -16,9 +17,38 @@ class MinutesGeneratorController extends Controller
         private readonly TranscriptAnalysisService $transcriptAnalysisService,
     ) {}
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('minutes-generator.index');
+        $minutesQuery = Minute::query()
+            ->latest();
+
+        if ($request->filled('status')) {
+            $minutesQuery->where('status', $request->string('status')->toString());
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->string('search')->toString();
+
+            $minutesQuery->where(function ($query) use ($search): void {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('executive_summary', 'like', "%{$search}%")
+                    ->orWhere('meeting_date', 'like', "%{$search}%");
+            });
+        }
+
+        return view('minutes-generator.index', [
+            'minutes' => $minutesQuery->paginate(8)->withQueryString(),
+            'stats' => [
+                'total' => Minute::count(),
+                'draft' => Minute::where('status', 'draft')->count(),
+                'approved' => Minute::where('status', 'approved')->count(),
+                'versions' => Minute::max('version') ?? 0,
+            ],
+            'organizationName' => config('services.minutes_generator.organization_name'),
+            'brandColor' => config('services.minutes_generator.brand_color'),
+            'maxTranscriptLength' => config('services.ai.max_transcript_length'),
+            'filters' => $request->only(['search', 'status']),
+        ]);
     }
 
     public function analyze(AnalyzeTranscriptRequest $request): RedirectResponse

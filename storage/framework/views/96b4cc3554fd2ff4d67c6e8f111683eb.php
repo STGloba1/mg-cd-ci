@@ -227,7 +227,7 @@
     <main class="sheet">
         <header class="document-header">
             <div>
-                <p class="eyebrow">Minuta ejecutiva</p>
+                <p class="eyebrow"><?php echo e(config('services.minutes_generator.organization_name')); ?> · Minuta ejecutiva</p>
                 <h1><?php echo e($minute->title); ?></h1>
             </div>
 

@@ -30,7 +30,7 @@
 <body>
     <main class="shell">
         <section class="hero" aria-label="Presentación">
-            <span class="badge">Acceso privado</span>
+            <span class="badge"><?php echo e(config('services.minutes_generator.organization_name')); ?> · Acceso privado</span>
             <h1>Minutes Generator</h1>
             <p>Generá minutas ejecutivas, acuerdos y tareas accionables desde transcripciones, con control de versiones y aprobación.</p>
         </section>

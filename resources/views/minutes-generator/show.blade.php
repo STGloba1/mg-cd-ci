@@ -227,7 +227,7 @@
     <main class="sheet">
         <header class="document-header">
             <div>
-                <p class="eyebrow">Minuta ejecutiva</p>
+                <p class="eyebrow">{{ config('services.minutes_generator.organization_name') }} · Minuta ejecutiva</p>
                 <h1>{{ $minute->title }}</h1>
             </div>
 
