@@ -114,7 +114,7 @@ HOSTING_REPO_TOKEN=<token con permisos de push sobre STGloba1/mg-cd-ci>
 Y excluye:
 
 - `.env` y `.env.*`
-- `composer.json` y `composer.lock`, para evitar que Hostinger intente resolver dependencias sobre el artefacto
+- `composer.lock`, para evitar que Hostinger intente resolver dependencias bloqueadas en una versión PHP incompatible. `composer.json` sí se conserva porque Laravel lo necesita en runtime para resolver el namespace de la app
 - `.github/`
 - `node_modules/`
 - `tests/`

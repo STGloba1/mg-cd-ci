@@ -27,7 +27,6 @@ rsync -a --delete \
   --exclude '.github/' \
   --exclude '.env' \
   --exclude '.env.*' \
-  --exclude 'composer.json' \
   --exclude 'composer.lock' \
   --exclude 'deploy-artifacts/' \
   --exclude 'node_modules/' \
