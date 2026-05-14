@@ -36,7 +36,6 @@
 
         .toolbar-actions { display: flex; flex-wrap: wrap; gap: 8px; }
         form { display: inline; }
-        a { color: #1d4ed8; }
         button, .button {
             background: var(--brand);
             border: 0;
@@ -49,6 +48,7 @@
             text-decoration: none;
         }
         .button.secondary { background: #4b5563; }
+        .button.back { background: #fff; border: 1px solid var(--border); color: var(--text); }
         .button.print { background: #047857; }
         .error, .success {
             border-radius: 6px;
@@ -195,7 +195,7 @@
 </head>
 <body>
     <div class="toolbar">
-        <a href="<?php echo e(route('minutes-generator.index')); ?>">← Nueva transcripción</a>
+        <a class="button back" href="<?php echo e(route('minutes-generator.index')); ?>">← Nueva transcripción</a>
 
         <div class="toolbar-actions">
             <button class="button print" type="button" onclick="window.print()">Exportar PDF</button>
