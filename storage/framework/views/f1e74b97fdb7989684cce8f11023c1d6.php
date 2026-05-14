@@ -42,6 +42,37 @@
         .hint, .counter { color: var(--muted); font-size: 14px; margin: 0; }
         .submit, .button { background: linear-gradient(135deg, var(--primary), #1d4ed8); border: 0; border-radius: 14px; color: #fff; cursor: pointer; display: inline-block; font: inherit; font-weight: 800; padding: 13px 18px; text-decoration: none; }
         .submit[disabled] { cursor: wait; opacity: .72; }
+        .processing-panel {
+            align-items: center;
+            background: #eff6ff;
+            border: 1px solid color-mix(in srgb, var(--primary) 28%, #bfdbfe);
+            border-radius: 18px;
+            display: none;
+            gap: 14px;
+            margin-top: 16px;
+            padding: 14px;
+        }
+        .processing-panel.active { display: flex; }
+        .processing-icon {
+            align-items: center;
+            animation: pulse-ring 1.25s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            border-radius: 999px;
+            color: #fff;
+            display: flex;
+            flex: 0 0 auto;
+            font-size: 20px;
+            font-weight: 900;
+            height: 52px;
+            justify-content: center;
+            width: 52px;
+        }
+        .processing-copy strong { display: block; }
+        .processing-copy span { color: var(--muted); display: block; font-size: 14px; }
+        @keyframes pulse-ring {
+            0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 35%, transparent); transform: scale(1); }
+            50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--primary) 0%, transparent); transform: scale(1.04); }
+        }
         .error, .success { border-radius: 14px; margin-bottom: 18px; padding: 12px 14px; }
         .error { background: #fee2e2; color: var(--danger); }
         .success { background: #dcfce7; color: var(--success); }
@@ -109,6 +140,14 @@
                         </div>
                         <button id="submit-button" class="submit" type="submit">Generar minuta</button>
                     </div>
+
+                    <div id="processing-panel" class="processing-panel" role="status" aria-live="polite">
+                        <div class="processing-icon" aria-hidden="true">AI</div>
+                        <div class="processing-copy">
+                            <strong id="processing-title">Procesando transcripción con IA</strong>
+                            <span id="processing-detail">Validando contenido y preparando el análisis estructurado...</span>
+                        </div>
+                    </div>
                 </form>
             </section>
 
@@ -163,7 +202,16 @@
         const counter = document.getElementById('counter');
         const form = document.getElementById('analysis-form');
         const button = document.getElementById('submit-button');
+        const processingPanel = document.getElementById('processing-panel');
+        const processingDetail = document.getElementById('processing-detail');
         const max = Number(textarea.getAttribute('maxlength'));
+        const processingMessages = [
+            'Validando longitud y estructura de la transcripción...',
+            'Enviando la transcripción al backend seguro...',
+            'La IA está identificando temas, acuerdos y tareas...',
+            'Organizando la minuta y calculando nivel de confianza...',
+            'Guardando la versión generada en la base de datos...'
+        ];
 
         function updateCounter() {
             counter.textContent = `${textarea.value.length.toLocaleString()} / ${max.toLocaleString()} caracteres`;
@@ -171,8 +219,16 @@
 
         textarea.addEventListener('input', updateCounter);
         form.addEventListener('submit', () => {
+            let step = 0;
             button.disabled = true;
-            button.textContent = 'Generando...';
+            button.textContent = 'Procesando...';
+            processingPanel.classList.add('active');
+            processingDetail.textContent = processingMessages[step];
+
+            window.setInterval(() => {
+                step = Math.min(step + 1, processingMessages.length - 1);
+                processingDetail.textContent = processingMessages[step];
+            }, 1800);
         });
         updateCounter();
     </script>
