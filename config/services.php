@@ -41,6 +41,8 @@ return [
         'auth_password' => env('MINUTES_GENERATOR_AUTH_PASSWORD'),
         'organization_name' => env('MINUTES_GENERATOR_ORGANIZATION_NAME', 'ST Global'),
         'brand_color' => env('MINUTES_GENERATOR_BRAND_COLOR', '#2563eb'),
+        'teams_import_enabled' => (bool) env('TEAMS_IMPORT_ENABLED', false),
+        'teams_import_token' => env('TEAMS_IMPORT_TOKEN'),
     ],
 
     'ai' => [

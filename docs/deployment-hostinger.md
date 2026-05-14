@@ -126,3 +126,57 @@ Y excluye:
 - logs locales
 
 La `.env` real se mantiene solo en Hostinger.
+
+## Importación desde Microsoft Teams / Power Automate
+
+El sistema expone un endpoint seguro para recibir transcripciones desde Power Automate u otra automatización:
+
+```txt
+POST https://mg.stglobal.tech/api/teams/transcripts
+Authorization: Bearer <TEAMS_IMPORT_TOKEN>
+Content-Type: application/json
+```
+
+Variables requeridas en `.env` de producción:
+
+```env
+TEAMS_IMPORT_ENABLED=true
+TEAMS_IMPORT_TOKEN=token_largo_y_secreto
+```
+
+Payload esperado:
+
+```json
+{
+  "source": "microsoft_teams",
+  "meeting_title": "Reunión semanal",
+  "meeting_date": "2026-05-13",
+  "transcript_text": "Texto completo de la transcripción..."
+}
+```
+
+Respuesta exitosa:
+
+```json
+{
+  "status": "completed",
+  "source": "microsoft_teams",
+  "minute_id": 15,
+  "analysis_id": 15,
+  "title": "Título generado por IA",
+  "url": "https://mg.stglobal.tech/minutes/15"
+}
+```
+
+Flujo recomendado en Power Automate:
+
+1. Trigger: archivo nuevo en OneDrive o SharePoint donde Teams guarda transcripciones.
+2. Leer contenido del archivo/transcripción.
+3. Acción HTTP `POST` hacia `/api/teams/transcripts`.
+4. Enviar la URL de la minuta generada por Teams o correo.
+
+Notas:
+
+- El endpoint falla cerrado si `TEAMS_IMPORT_ENABLED=false` o si falta el token.
+- La transcripción debe cumplir las mismas reglas de longitud que el formulario web.
+- El endpoint reutiliza el mismo flujo de IA y guardado de minutas que el panel privado.
