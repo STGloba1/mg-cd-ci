@@ -47,7 +47,7 @@
                 <input id="password" type="password" name="password" autocomplete="current-password" required>
                 <button type="submit">Entrar</button>
             </form>
-            <p class="footnote">La aplicación está protegida porque está publicada en internet.</p>
+            <p class="footnote">Acceso Limitado a usuarios autorizados.</p>
         </section>
     </main>
 </body>
