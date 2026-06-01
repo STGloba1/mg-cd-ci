@@ -85,6 +85,11 @@
         .status.approved { background: #dcfce7; color: #166534; }
         .empty { color: var(--muted); padding: 22px 0; text-align: center; }
         .pagination { color: var(--muted); font-size: 13px; margin-top: 12px; }
+        .pager { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+        .pager-control, .pager-current { border: 1px solid var(--border); border-radius: 999px; font-size: 13px; font-weight: 800; line-height: 1; padding: 9px 12px; }
+        .pager-control { background: #fff; color: var(--text); text-decoration: none; }
+        .pager-control.disabled { color: var(--muted); cursor: not-allowed; opacity: .55; }
+        .pager-current { background: #f8fafc; color: var(--muted); }
         @media (max-width: 960px) { .grid, .stats { grid-template-columns: 1fr; } .filters { grid-template-columns: 1fr; } .topbar, .actions { align-items: stretch; flex-direction: column; } .logout, .submit, .button { width: 100%; } .page { padding: 18px; } }
     </style>
 </head>
@@ -188,7 +193,23 @@
                         </tbody>
                     </table>
                     <p class="pagination">Mostrando {{ $minutes->firstItem() }}-{{ $minutes->lastItem() }} de {{ $minutes->total() }} minutas.</p>
-                    {{ $minutes->links() }}
+                    @if ($minutes->hasPages())
+                        <nav class="pager" aria-label="Paginación de minutas">
+                            @if ($minutes->onFirstPage())
+                                <span class="pager-control disabled" aria-disabled="true">Anterior</span>
+                            @else
+                                <a class="pager-control" href="{{ $minutes->previousPageUrl() }}" rel="prev">Anterior</a>
+                            @endif
+
+                            <span class="pager-current" aria-current="page">Página {{ $minutes->currentPage() }} de {{ $minutes->lastPage() }}</span>
+
+                            @if ($minutes->hasMorePages())
+                                <a class="pager-control" href="{{ $minutes->nextPageUrl() }}" rel="next">Siguiente</a>
+                            @else
+                                <span class="pager-control disabled" aria-disabled="true">Siguiente</span>
+                            @endif
+                        </nav>
+                    @endif
                 @else
                     <p class="empty">Todavía no hay minutas para estos filtros.</p>
                 @endif
