@@ -14,6 +14,7 @@ return array(
     'App\\Http\\Middleware\\EnsureTeamsImportToken' => $baseDir . '/app/Http/Middleware/EnsureTeamsImportToken.php',
     'App\\Http\\Requests\\AnalyzeTranscriptRequest' => $baseDir . '/app/Http/Requests/AnalyzeTranscriptRequest.php',
     'App\\Http\\Requests\\UpdateMinuteRequest' => $baseDir . '/app/Http/Requests/UpdateMinuteRequest.php',
+    'App\\Jobs\\GenerateMinuteFromTranscriptAnalysis' => $baseDir . '/app/Jobs/GenerateMinuteFromTranscriptAnalysis.php',
     'App\\Models\\Minute' => $baseDir . '/app/Models/Minute.php',
     'App\\Models\\TranscriptAnalysis' => $baseDir . '/app/Models/TranscriptAnalysis.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

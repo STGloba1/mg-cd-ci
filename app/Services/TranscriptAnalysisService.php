@@ -16,14 +16,19 @@ class TranscriptAnalysisService
 
     public function analyze(string $transcript): Minute
     {
-        $analysis = TranscriptAnalysis::create([
+        $analysis = $this->createPending($transcript);
+
+        return $this->processAnalysis($analysis);
+    }
+
+    public function createPending(string $transcript): TranscriptAnalysis
+    {
+        return TranscriptAnalysis::create([
             'transcript_text' => $transcript,
             'status' => 'pending',
             'provider' => $this->aiProvider->provider(),
             'model' => $this->aiProvider->model(),
         ]);
-
-        return $this->process($analysis);
     }
 
     public function regenerate(Minute $minute): Minute
@@ -32,10 +37,10 @@ class TranscriptAnalysisService
 
         $nextVersion = ((int) $analysis->minutes()->max('version')) + 1;
 
-        return $this->process($analysis, $nextVersion);
+        return $this->processAnalysis($analysis, $nextVersion);
     }
 
-    private function process(TranscriptAnalysis $analysis, ?int $version = null): Minute
+    public function processAnalysis(TranscriptAnalysis $analysis, ?int $version = null): Minute
     {
         $analysis->update([
             'status' => 'processing',

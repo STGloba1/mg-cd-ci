@@ -483,6 +483,7 @@ class ComposerStaticInit74199c0a3889e8d1256a25f93805ef56
         'App\\Http\\Middleware\\EnsureTeamsImportToken' => __DIR__ . '/../..' . '/app/Http/Middleware/EnsureTeamsImportToken.php',
         'App\\Http\\Requests\\AnalyzeTranscriptRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AnalyzeTranscriptRequest.php',
         'App\\Http\\Requests\\UpdateMinuteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMinuteRequest.php',
+        'App\\Jobs\\GenerateMinuteFromTranscriptAnalysis' => __DIR__ . '/../..' . '/app/Jobs/GenerateMinuteFromTranscriptAnalysis.php',
         'App\\Models\\Minute' => __DIR__ . '/../..' . '/app/Models/Minute.php',
         'App\\Models\\TranscriptAnalysis' => __DIR__ . '/../..' . '/app/Models/TranscriptAnalysis.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

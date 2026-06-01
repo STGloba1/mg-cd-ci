@@ -140,7 +140,7 @@
                     <textarea id="transcript_text" name="transcript_text" required maxlength="<?php echo e($maxTranscriptLength); ?>" placeholder="Pegá acá la transcripción completa de la reunión..."><?php echo e(old('transcript_text')); ?></textarea>
                     <div class="actions">
                         <div>
-                            <p class="hint">Mínimo 100 caracteres. La IA tratará la transcripción como datos, no como instrucciones.</p>
+                            <p class="hint">Mínimo 100 caracteres. La IA tratará la transcripción como datos y el procesamiento quedará en cola.</p>
                             <p id="counter" class="counter">0 / <?php echo e(number_format($maxTranscriptLength)); ?> caracteres</p>
                         </div>
                         <button id="submit-button" class="submit" type="submit">Generar minuta</button>
@@ -149,8 +149,8 @@
                     <div id="processing-panel" class="processing-panel" role="status" aria-live="polite">
                         <div class="processing-icon" aria-hidden="true">AI</div>
                         <div class="processing-copy">
-                            <strong id="processing-title">Procesando transcripción con IA</strong>
-                            <span id="processing-detail">Validando contenido y preparando el análisis estructurado...</span>
+                            <strong id="processing-title">Encolando transcripción</strong>
+                            <span id="processing-detail">Validando contenido y preparando el trabajo en segundo plano...</span>
                         </div>
                     </div>
                 </form>
@@ -228,9 +228,9 @@
         const processingMessages = [
             'Validando longitud y estructura de la transcripción...',
             'Enviando la transcripción al backend seguro...',
-            'La IA está identificando temas, acuerdos y tareas...',
-            'Organizando la minuta y calculando nivel de confianza...',
-            'Guardando la versión generada en la base de datos...'
+            'Creando el análisis pendiente...',
+            'Encolando la generación para el worker...',
+            'Abriendo la pantalla de estado...'
         ];
 
         function updateCounter() {
@@ -241,7 +241,7 @@
         form.addEventListener('submit', () => {
             let step = 0;
             button.disabled = true;
-            button.textContent = 'Procesando...';
+            button.textContent = 'Encolando...';
             processingPanel.classList.add('active');
             processingDetail.textContent = processingMessages[step];
 

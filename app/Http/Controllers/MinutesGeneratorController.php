@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AnalyzeTranscriptRequest;
 use App\Http\Requests\UpdateMinuteRequest;
+use App\Jobs\GenerateMinuteFromTranscriptAnalysis;
 use App\Models\Minute;
+use App\Models\TranscriptAnalysis;
 use App\Services\TranscriptAnalysisService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -53,18 +55,23 @@ class MinutesGeneratorController extends Controller
 
     public function analyze(AnalyzeTranscriptRequest $request): RedirectResponse
     {
-        try {
-            $minute = $this->transcriptAnalysisService->analyze($request->string('transcript_text')->toString());
+        $analysis = $this->transcriptAnalysisService->createPending($request->string('transcript_text')->toString());
 
-            return redirect()
-                ->route('minutes-generator.show', $minute)
-                ->with('success', 'Minuta generada correctamente.');
-        } catch (Throwable) {
-            return redirect()
-                ->route('minutes-generator.index')
-                ->withInput()
-                ->with('error', 'No se pudo generar la minuta. Revisá la configuración de IA o intentá nuevamente.');
-        }
+        GenerateMinuteFromTranscriptAnalysis::dispatch($analysis->id);
+
+        return redirect()
+            ->route('minutes-generator.status', $analysis)
+            ->with('success', 'La minuta quedó en cola. Podés seguir el estado desde esta pantalla.');
+    }
+
+    public function status(TranscriptAnalysis $analysis): View
+    {
+        return view('minutes-generator.status', [
+            'analysis' => $analysis,
+            'minute' => $analysis->minutes()->latest()->first(),
+            'organizationName' => config('services.minutes_generator.organization_name'),
+            'brandColor' => config('services.minutes_generator.brand_color'),
+        ]);
     }
 
     public function show(Minute $minute): View
