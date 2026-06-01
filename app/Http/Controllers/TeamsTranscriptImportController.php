@@ -23,7 +23,7 @@ class TeamsTranscriptImportController extends Controller
                 'required',
                 'string',
                 'min:100',
-                'max:'.config('services.ai.max_transcript_length', 20000),
+                'max:'.config('services.ai.max_transcript_length', 100000),
             ],
         ]);
 

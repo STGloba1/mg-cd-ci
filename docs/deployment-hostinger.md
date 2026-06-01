@@ -46,7 +46,7 @@ AI_PROVIDER=nvidia
 AI_API_KEY=clave_real
 AI_MODEL=meta/llama-3.1-70b-instruct
 AI_BASE_URL=https://integrate.api.nvidia.com/v1
-AI_MAX_TRANSCRIPT_LENGTH=20000
+AI_MAX_TRANSCRIPT_LENGTH=100000
 ```
 
 ## Checklist

@@ -41,7 +41,7 @@ DB_PASSWORD=
 AI_PROVIDER=openai
 AI_API_KEY=
 AI_MODEL=gpt-4o-mini
-AI_MAX_TRANSCRIPT_LENGTH=20000
+AI_MAX_TRANSCRIPT_LENGTH=100000
 ```
 
 La API key de IA se usa solo en backend. No la pongas en Blade, JavaScript ni variables `VITE_*`.

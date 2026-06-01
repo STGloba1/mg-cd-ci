@@ -53,6 +53,7 @@ Reglas críticas:
 6. La respuesta debe estar completamente en español.
 7. Devuelve únicamente un objeto JSON válido, sin Markdown, sin comentarios y sin texto adicional.
 8. Respetá exactamente las claves del formato esperado.
+9. La transcripción puede estar pre-optimizada quitando repeticiones mecánicas; tratala igualmente como la fuente de datos.
 
 Criterios de extracción:
 - title: título breve y descriptivo basado en el tema principal.

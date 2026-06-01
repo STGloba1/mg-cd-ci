@@ -490,6 +490,7 @@ class ComposerStaticInit74199c0a3889e8d1256a25f93805ef56
         'App\\Services\\AIProviderService' => __DIR__ . '/../..' . '/app/Services/AIProviderService.php',
         'App\\Services\\MinutesGeneratorService' => __DIR__ . '/../..' . '/app/Services/MinutesGeneratorService.php',
         'App\\Services\\TranscriptAnalysisService' => __DIR__ . '/../..' . '/app/Services/TranscriptAnalysisService.php',
+        'App\\Services\\TranscriptOptimizationService' => __DIR__ . '/../..' . '/app/Services/TranscriptOptimizationService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',

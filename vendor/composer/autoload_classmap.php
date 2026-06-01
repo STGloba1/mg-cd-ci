@@ -21,6 +21,7 @@ return array(
     'App\\Services\\AIProviderService' => $baseDir . '/app/Services/AIProviderService.php',
     'App\\Services\\MinutesGeneratorService' => $baseDir . '/app/Services/MinutesGeneratorService.php',
     'App\\Services\\TranscriptAnalysisService' => $baseDir . '/app/Services/TranscriptAnalysisService.php',
+    'App\\Services\\TranscriptOptimizationService' => $baseDir . '/app/Services/TranscriptOptimizationService.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Brick\\Math\\BigDecimal' => $vendorDir . '/brick/math/src/BigDecimal.php',
     'Brick\\Math\\BigInteger' => $vendorDir . '/brick/math/src/BigInteger.php',

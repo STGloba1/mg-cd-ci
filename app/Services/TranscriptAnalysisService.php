@@ -11,6 +11,7 @@ class TranscriptAnalysisService
     public function __construct(
         private readonly AIProviderService $aiProvider,
         private readonly MinutesGeneratorService $minutesGenerator,
+        private readonly TranscriptOptimizationService $transcriptOptimization,
     ) {}
 
     public function analyze(string $transcript): Minute
@@ -42,8 +43,10 @@ class TranscriptAnalysisService
         ]);
 
         try {
+            $optimizedTranscript = $this->transcriptOptimization->optimize($analysis->transcript_text);
+
             $result = $this->aiProvider->analyzeTranscript(
-                $this->minutesGenerator->buildPrompt($analysis->transcript_text),
+                $this->minutesGenerator->buildPrompt($optimizedTranscript),
             );
 
             $minute = $this->minutesGenerator->createMinute(

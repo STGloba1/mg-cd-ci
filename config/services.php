@@ -35,7 +35,6 @@ return [
         ],
     ],
 
-
     'minutes_generator' => [
         'auth_username' => env('MINUTES_GENERATOR_AUTH_USERNAME'),
         'auth_password' => env('MINUTES_GENERATOR_AUTH_PASSWORD'),
@@ -50,7 +49,7 @@ return [
         'api_key' => env('AI_API_KEY'),
         'model' => env('AI_MODEL', 'meta/llama-3.1-70b-instruct'),
         'base_url' => env('AI_BASE_URL', 'https://integrate.api.nvidia.com/v1'),
-        'max_transcript_length' => (int) env('AI_MAX_TRANSCRIPT_LENGTH', 20000),
+        'max_transcript_length' => (int) env('AI_MAX_TRANSCRIPT_LENGTH', 100000),
     ],
 
 ];
