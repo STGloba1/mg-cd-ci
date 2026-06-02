@@ -46,8 +46,10 @@ AI_PROVIDER=nvidia
 AI_API_KEY=clave_real
 AI_MODEL=meta/llama-3.1-70b-instruct
 AI_BASE_URL=https://integrate.api.nvidia.com/v1
+AI_REQUEST_TIMEOUT=120
 AI_MAX_TRANSCRIPT_LENGTH=100000
 QUEUE_CONNECTION=database
+DB_QUEUE_RETRY_AFTER=180
 ```
 
 ## Checklist
@@ -69,7 +71,7 @@ php artisan view:cache
 ```
 
 7. Si Hostinger permite cambiar document root, apuntarlo a `public/`. Si no, el `.htaccess` raíz reescribe las solicitudes hacia `public/`.
-8. Configurar ejecución de cola para el formulario web. Preferido: proceso persistente `php artisan queue:work --tries=1`. Si el plan no permite workers persistentes, usar cron para ejecutar periódicamente `php artisan queue:work --stop-when-empty --tries=1`.
+8. Configurar ejecución de cola para el formulario web. Preferido: proceso persistente `php artisan queue:work --tries=1 --timeout=120`. Si el plan no permite workers persistentes, usar cron para ejecutar periódicamente `php artisan queue:work --stop-when-empty --tries=1 --timeout=120`.
 9. Verificar `/`.
 
 ## Fuentes

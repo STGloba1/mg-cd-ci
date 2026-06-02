@@ -24,7 +24,7 @@ class AIProviderService
 
         $response = Http::withToken($apiKey)
             ->acceptJson()
-            ->timeout(60)
+            ->timeout((int) config('services.ai.request_timeout', 120))
             ->post($this->baseUrl().'/chat/completions', [
                 'model' => $this->model(),
                 'messages' => [

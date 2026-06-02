@@ -11,6 +11,8 @@ class GenerateMinuteFromTranscriptAnalysis implements ShouldQueue
 {
     use Queueable;
 
+    public int $timeout = 120;
+
     public function __construct(
         public readonly int $analysisId,
         public readonly ?int $version = null,
